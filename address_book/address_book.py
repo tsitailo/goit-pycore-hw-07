@@ -124,9 +124,10 @@ class AddressBook(UserDict):
         record = self.find(name)
         if record is None:
             return False
-
-        record.phones.clear()
-        record.add_phone(new_phone)
+        
+        record.add_phone(new_phone) #ValueError: Якщо новий номер телефону недійсний
+        #залишимо лише останній доданий телефон
+        record.phones = [record.phones[-1]]
 
         return True
 
